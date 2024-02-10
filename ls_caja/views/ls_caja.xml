@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <!-- prueba form view -->
-    <record id="prueba_view_form" model="ir.ui.view">
-        <field name="name">prueba.view.form</field>
-        <field name="model">prueba</field>
+    <!-- model.name form view -->
+    <record id="model.name_view_form" model="ir.ui.view">
+        <field name="name">model.name.view.form</field>
+        <field name="model">model.name</field>
         <field name="arch" type="xml">
             <form string="">
                 <sheet>
@@ -13,36 +13,6 @@
                     </group>
                 </sheet>
             </form>
-        </field>
-    </record>
-    <!-- ls_caja tree view -->
-    <record id="ls_caja_view_tree" model="ir.ui.view">
-        <field name="name">ls_caja.view.tree</field>
-        <field name="model">ls_caja</field>
-        <field name="arch" type="xml">
-            <tree>
-                <!-- Add your fields here -->
-                
-            </tree>
-        </field>
-    </record>
-    <!-- model.name action window -->
-    <record id="model.name_action" model="ir.actions.act_window">
-        <field name="name">model.name.action</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">model.name</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_type">form</field>
-        <field name="domain">[]</field>
-        <field name="context">{}</field>
-        <field name="target">{current}</field>
-        <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                <!-- Add Text Here -->
-            </p><p>
-                <!-- More details about what a user can do with this object will be OK --> 
-            
-            </p>
         </field>
     </record>
 </odoo>
