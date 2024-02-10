@@ -1,0 +1,6 @@
+<template>
+    <div class="product_list_main" t-name="owl_start.ProductList" owl="1">
+        <h3> My first OWL App</h3>
+
+    </div>
+</template>
