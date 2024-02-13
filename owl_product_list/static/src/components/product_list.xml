@@ -1,0 +1,49 @@
+<templates>
+    <div id="product_comp" class="m-2 container" t-name="owl_product_list.ProductList" owl="1">
+        <h2>Odoo Product List</h2>
+        <div class="row">
+            <div class="input-group nb-3">
+                <input id="input-product-name" type="text" t-ref="input" class="form-control" placeholder="HP 123.25" aria-label="Product Name" aria-describedby="button-addon2"/>
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" t-on-click="addProduct">Add</button>
+            </div>
+        </div>
+        <br/>
+        <div class="row align-items-start text-center product-list">
+            <t t-foreach="products" t-as="product" t-key="product.id">
+                <div class="col-2 product-item m-1 p-1 border rounded">
+                    <span t-out="product.id"/>
+                    <span>-</span>
+                    <span t-out="product.name"/>
+                    <br/>
+                    <span class="price" t-esc="product.list_price.toLocaleString('es-BO', {style:'currency', currency:'BOB'})"/>
+                    <i t-att-id="product.id" title="Delete" class="fa fa-trash" t-on-click="delProduct"></i>
+                </div>
+            </t>
+        </div>
+        <!-- <div class="row align-items-start text-center product-list">
+            <t t-foreach="products" t-as="product" t-key="product.id">
+                <div class="col-2 product-item m-1 p-1 border rounded" t-on-click="delProduct">
+                    <span t-esc="product.id"/>
+-
+                    <span t-esc="product.name"/>
+                    <br/>
+                    <span class="price" t-esc="product.list_price.toLocaleString("en-US", {style:"currency", currency:"USD"})"/>
+                    <i t-att-id="product.id" title="Delete" class="bi bi-x-circle"></i>
+                </div>
+            </t>
+        </div> -->
+        <!-- <div class="row align-items-start text-center product-list">
+            <t t-foreach="products" t-as="product" t-key="i">
+                <div class="col-2 product-item m-1 p-1 border rounded" t-on-click="delProduct">
+                    <span t-esc="product.id" />
+-
+                    <span t-esc="product.name" />
+                    <br/>
+                    <span class="price" t-esc="product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' })" />
+                    <i t-att-id="product.id" title="Delete" class="bi bi-x-circle"></i>
+                </div>
+            </t>
+        </div> -->
+
+    </div>
+</templates>
