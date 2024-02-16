@@ -4,6 +4,7 @@ import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks"
 
 import { Component, onWillStart, useState, useRef } from "@odoo/owl";
+import { Product } from "./product";
 
 console.log("Owl cargado y listo")
 
@@ -16,6 +17,7 @@ export class ProductList extends Component{
         this.orm = useService("orm") // usando servicio ORM que tiene la misma función de PRC
         this.products = useState([])
         this.notify = useService("notification")
+        this.next_id = 10000
         console.log("Hello from Product List")
         onWillStart(async()=>{
             const domain_products = []
@@ -41,16 +43,19 @@ export class ProductList extends Component{
         })
     }
     /** Método para eliminar elemento */
-    delProduct(ev){
+    delProduct(ev, product_id){
         ev.stopPropagation()
-        console.log("Borrando", ev)
+        // console.log("Borrando", ev)
         const index = this.products.findIndex(
-            p=>p.id === Number(ev.target.id)
+            p=>p.id === product_id
+            // p=>p.id === Number(ev.target.id) // ESsta línea es importante si no se trabaja con Subcomponentes.
         );
-        const del_item = this.products.splice(index, 1);
-        console.log(typeof(this.products[0].id, "zzzzzz", typeof(ev.target.id)))
-        console.log(`Borrando ${ev.target.id} ${index}`)
-        console.log(`Producto Borrado ${this.products[0].name}`)
+        // función SPLICE ADICIONA, REEMPLAZA O BORRA ELEMENTOS a un array.
+        const del_item = this.products.splice(index, 1); // borra un elemento del INDICE, 1 elemento
+
+        // console.log(typeof(this.products[0].id, "zzzzzz", typeof(ev.target.id)))
+        // console.log(`Borrando ${ev.target.id} ${index}`)
+        // console.log(`Producto Borrado ${this.products[0].name}`)
         const msg = "Elemento borrado..."
         this.notify.add(msg, {
             title: `Borrado: ${this.products[0].name} - [${this.products[0].code}]`,
@@ -59,10 +64,21 @@ export class ProductList extends Component{
             className: "notificaciones", // tambien se puede modificar en archivo css
         })
     }
+    addProduct(ev){
+        ev.stopPropagation()
+        console.log(this.inputRef.el.value)
+        const [name, price] = this.inputRef.el.value.split(" ")
+        this.products.push({"id": this.next_id, "name": name, "list_price": Number(price)})
+        this.next_id++
+    }
 }
 
 /** Llama al template creado static/src/components/product_list.xml */
 ProductList.template="owl_product_list.ProductList"
+
+/** Agregamos los subcomponentes */
+/** en este caso solo tenemos un subcomponente PRODUCT de static/src/components.xml */
+ProductList.components = {Product}
 
 /** Registra el tag de la actions  creada en views/actions.xml, con el objeto creado*/
 registry.category("actions").add("owl_product_list", ProductList)
