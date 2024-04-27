@@ -14,10 +14,21 @@ div#product_comp {
 }
 
 .product-item {
-    background-color: #4bad6e;
     color: white;
     position: relative;
     box-sizing: border-box;
+}
+
+.p-product {
+    background-color: #4bad6e;
+}
+
+.p-service {
+    background-color: #b588cd; 
+}
+
+.p-consu {
+    background-color: #1a34a8; 
 }
 
 .product-item i {

@@ -1,10 +1,14 @@
 <templates>
     <div t-name="owl_product_list.Product" class="col-2 product-item m-1 p-1 border rounded" owl="1">
-        <span t-out="props.product.id"/>
-        <span t-out="props.product.name"/>
-        <br/>
-        <span class="price" t-out="props.product.list_price.toLocaleString('es-BO', {style: 'currency', currency: 'BOB'})"/>
-        <!-- <span class="price" t-out="props.product.list_price"/> -->
-        <i t-att-id="props.product.id" t-on-click="delProduct" title="Delete" class="fa fa-trash"></i>
+        <t t-set="prod_style_1" t-value="product-item"/>
+        <t t-set="p_type" t-value="props.product.detailed_type"/>
+        <div t-att-class="{'product-item p-product': p_type === 'product', 'product-item p-service': p_type === 'service', 'product-item p-consu': p_type === 'consu'}">
+            <span t-out="props.product.id"/>
+            <span t-out="props.product.name"/>
+            <br/>
+            <span class="price" t-out="props.product.list_price.toLocaleString('es-BO', {style: 'currency', currency: 'BOB'})"/>
+            <!-- <span class="price" t-out="props.product.list_price"/> -->
+            <i t-att-id="props.product.id" t-on-click="delProduct" title="Delete" class="fa fa-trash"></i>
+        </div>
     </div>
 </templates>

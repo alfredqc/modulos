@@ -21,8 +21,8 @@ export class ProductList extends Component{
         console.log("Hello from Product List")
         onWillStart(async()=>{
             const domain_products = []
-            const products_fields = ["name", "list_price", "code"]
-            const products = await this.orm.searchRead("product.product", domain_products, products_fields, {limit:30} )
+            const products_fields = ["name", "list_price", "code", "detailed_type"]
+            const products = await this.orm.searchRead("product.product", domain_products, products_fields, {limit:50} )
             products.forEach(product => {
                 this.products.push(product)
             });
